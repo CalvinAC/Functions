@@ -20,12 +20,13 @@ Module Functions
             Console.ReadLine()
         Next
 
-        AccumulateMessage("It is I! Dio!")
-        AccumulateMessage("Please stop please")
-        AccumulateMessage("oof")
-        MsgBox(AccumulateMessage(""))
         'Console.WriteLine(DoesNotReturnStuff())
         'Console.ReadLine()
+
+        AccumulateMessage("It is I! Dio!", False)
+        AccumulateMessage("Please stop please", False)
+        AccumulateMessage("oof", False)
+        MsgBox(AccumulateMessage("", False))
 
     End Sub
 
@@ -55,10 +56,14 @@ Module Functions
         Return total
     End Function
 
-    Function AccumulateMessage(ByVal newMessage As String) As String
-
+    Function AccumulateMessage(ByVal newMessage As String, ByVal clear As Boolean) As String
         Static userMessage As String
-        userMessage &= newMessage & vbNewLine
+        If clear Then
+            userMessage = ""
+        Else
+            userMessage &= newMessage & vbNewLine
+        End If
+
         Return userMessage
 
     End Function
